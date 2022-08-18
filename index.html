@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>ZDog Editor</title>
+    <input type="range" min="1" max="100" value="50" id="sliderDiameter">
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        .zdog-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: #FDB;
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <canvas class="zdog-canvas"></canvas>
+    </div>
+</body>
+
+<script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+<script src="app.js"></script>
+</html>
