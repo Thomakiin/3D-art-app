@@ -1,47 +1,54 @@
-let sliderDiameter = document.getElementById("sliderDiameter");
-
 let isSpinning = true;
-let num = 0;
-let d = 50; // inputted diameter
 
-let illo = new Zdog.Illustration({
-    element: '.zdog-canvas', // IMPORTANT: element to render on (make sure this matches a canvas / svg in the html file)
-    dragRotate: true,
-    // stop rotation when dragging starts
-    onDragStart: function () {
-        isSpinning = false;
-    },
-});
+// let illo = new Zdog.Illustration({
+//   element: '.zdog-canvas',
+//   dragRotate: true,
+// });
 
-// add circle
-let MyDog = new Zdog.Ellipse({
-    addTo: illo,
-    diameter: 80,
-    stroke: 20,
-    color: '#636',
-});
+// circle
+// new Zdog.Ellipse({
+//   addTo: illo,
+//   diameter: 80,
+//   stroke: 20,
+//   color: '#636',
+// });
 
-function animate() {
-    // rotate
-    if (isSpinning) {
-        illo.rotate.y += 0.03;
-    }
-    illo.updateRenderGraph();
-    requestAnimationFrame(animate);
-}
-animate();
+for (var i = 0; i < 100; i++) {
+    var canv = document.createElement("canvas");
+    document.getElementById("body").appendChild(canv);
+    canv.className = 'zdog-canvas' + i;
+    canv.width = "100";
+    //canv.color = (111, 111, 111, 1);
 
-function myTimer() {
-    illo.removeChild(MyDog);
-    num += 50;
-    MyDog = new Zdog.Ellipse({
+    let illo = new Zdog.Illustration({
+        element: '.zdog-canvas' + i,
+        dragRotate: true,
+    });
+    new Zdog.Ellipse({
         addTo: illo,
-        diameter: sliderDiameter.value,
+        diameter: 80,
         stroke: 20,
         color: '#636',
     });
-    //console.log(slider.value);
-    illo.updateRenderGraph();
+    new Zdog.Ellipse({
+        addTo: illo,
+        diameter: 20,
+        stroke: 20,
+        color: '#636',
+    });
+    // square
+    new Zdog.Rect({
+        addTo: illo,
+        width: 80,
+        height: 80,
+        translate: { z: -40 },
+        stroke: 13,
+        color: '#E62',
+        fill: true,
+    });
+    function animate() {
+        illo.updateRenderGraph();
+        requestAnimationFrame(animate);
+    }
+    animate();
 }
-
-setInterval(myTimer, 1);
